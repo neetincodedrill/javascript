@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            First javscript assdigment
+        </title>
+        <style>
+        </style>
+    </head>
+    <body>
+        <h4>Second javscipt assigment</h4>
+        <p>Database Array :</p>
+        <p id="databaseArray"></p>
+        <p>Fruit Array :</p>
+        <p id="fruitArray"></p>
+        <p>Filter Array:</p>
+        <p id="newArray"></p>
+        
+        <!--javascript-->
+        <script>
+            //database
+            var fruitsDb = ["apple","banana","orange","pineapple","grapes","avacado","strawberry"];
+            // fruit array
+            var mixFruitArr = ["grapes","cabbage","tomato","banana"];
+
+            //filter function to filter fruits from database array
+            function filterfruits(fruitsDb,mixFruitArr){
+                var filterArray = []; //empty array to add filter values 
+                for(var i = 0;i<fruitsDb.length; i++){
+                    for(var j =0; j<mixFruitArr.length; j++){
+                        if(fruitsDb[i] === mixFruitArr[j]){ //filtering values  
+                            filterArray.push(fruitsDb[i]);  //adding filtering values in the new filterArray
+                        }
+                    }
+                }
+                return filterArray;
+            }
+
+            document.getElementById("databaseArray").innerHTML = fruitsDb;
+            document.getElementById("fruitArray").innerHTML = mixFruitArr;
+            document.getElementById("newArray").innerHTML = filterfruits(fruitsDb,mixFruitArr);
+        </script>
+    
+    </body>
+</html>

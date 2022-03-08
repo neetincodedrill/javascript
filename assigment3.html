@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            First javscript assdigment
+        </title>
+        <style>
+            form {
+                margin: 20px
+            }
+            input{
+                margin-bottom:20px
+            }
+        </style>
+    </head>
+    <body>
+             
+        <input type="date" id="start_date">
+        <input type="date" id="end_date">
+        <button type="button" onclick="getInputValue();">Get difference</button>
+  
+      
+       <script>
+            function getInputValue(){
+            // Selecting the input element and get its value 
+            var d1 = document.getElementById("start_date").value;
+            var d2 = document.getElementById("end_date").value;
+            // Displaying the value  
+            console.log(d1);
+            console.log(d2)        
+           }   
+        
+      
+
+       </script>
+
+</body>
+</html>
