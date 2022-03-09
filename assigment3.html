@@ -5,9 +5,6 @@
             First javscript assdigment
         </title>
         <style>
-            form {
-                margin: 20px
-            }
             input{
                 margin-bottom:20px
             }
@@ -17,21 +14,49 @@
              
         <input type="date" id="start_date">
         <input type="date" id="end_date">
-        <button type="button" onclick="getInputValue();">Get difference</button>
-  
+        <button type="button" onclick="getInputValue();">Get difference</button><br>
+       
+       <label>Years : <span id="years"></span>  </label><br>
+       <label>Month: <span id="months"></span> </label><br>
+       <label>days: <span id="days"></span></label><br>
       
        <script>
             function getInputValue(){
             // Selecting the input element and get its value 
             var d1 = document.getElementById("start_date").value;
             var d2 = document.getElementById("end_date").value;
-            // Displaying the value  
-            console.log(d1);
-            console.log(d2)        
-           }   
-        
-      
 
+            var start_date = new Date(d1);
+            var end_date = new Date(d2);
+            var time = Math.abs(end_date - start_date);
+            var days = Math.floor(time / (1000*60*60*24))
+            var month = Math.floor(days/31);
+            var years = Math.floor(month/12);
+                      
+            //if-else condition for days
+            let newDay;
+            if(days > 30){
+                newDay = Math.floor(days % 30)
+            } 
+            else{
+                newDay = days
+            }  
+            
+            //if-else condition for months
+            let newMonth;
+            if(month > 12){
+                newMonth = Math.floor(month % 12)
+            }
+            else{
+                newMonth = month
+            }
+            
+            //passing values to html element
+            document.getElementById('days').innerHTML = newDay; 
+            document.getElementById('months').innerHTML = newMonth; 
+            document.getElementById('years').innerHTML = years;                    
+           }   
+    
        </script>
 
 </body>
