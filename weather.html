@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+               Today weather information 
+        </title>
+    </head>
+    <body>
+        <di>
+            <h2>Today Weather information</h2>
+            <button type ="button" onclick="getWeather()">Show Today Weather</button><br>
+            <label>Place:</label>
+            <p id="region"></p>
+            <label>Temp in degree:</label>
+            <p id="degree"></p>
+            <label>Temp in Farh:</label>
+            <p id="farh"></p>
+            <label>Humidity:</label>
+            <p id="humidity"></p>
+          
+        </div>
+        <script>
+            //get post
+            //weather api to get the current weather of the chandigarh
+            function getWeather(){
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function(){
+                    const data = this.responseText;
+                    const string = JSON.parse(this.responseText)
+                    document.getElementById('region').innerHTML = string.location.region;
+                    document.getElementById('degree').innerHTML = string.current.temp_c;
+                    document.getElementById('farh').innerHTML = string.current.temp_f;
+                    document.getElementById('humidity').innerHTML = string.current.humidity;                          
+                    console.log(string.current)                                   
+                }
+                xhttp.open("GET","http://api.weatherapi.com/v1/current.json?key=655f9b652f2b46c3b1f113839221103&q=Chandigarh&aqi=yes")
+                xhttp.send();
+            }
+        </script>
+    </body>
+</html>

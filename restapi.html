@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Passing REST api
+        </title>
+    </head>
+        <body>
+
+            <div id ="allUsers">
+                <h2>Ajax request</h2>
+                <button type="button" onclick="loacDoc()">Show all user</button>
+            </div>
+            <br>
+            <div id='send'>
+                <h2>Ajax request to send data</h2>
+                <button type="button" onclick="senddoc()">Create Data</button>
+            </div>
+            <br>
+            <div id="delete">
+                <h2>Delete the  user</h2>
+                <button type ="button" onclick="deleteuser()">Delete user</button>
+            </div>
+            <br>
+            <div id="update">
+                <h2>Update the  user</h2>
+                <button type ="button" onclick="updateuser()">Update user</button>
+            </div>
+
+          <script>
+
+              //get post to get the users data
+              function loacDoc(){
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function(){
+                    document.getElementById("allUsers").innerHTML = this.responseText;
+                    console.log(this.responseText.toString())
+                }
+                xhttp.open("GET","https://gorest.co.in/public/v2/users");
+                xhttp.send();
+            }
+            
+
+            //post request to create a new User
+            function senddoc(){
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function(){
+                    document.getElementById('send').innerHtml = this.responseText;
+                    console.log(this.responseText)
+                }
+                xhttp.open("POST","https://gorest.co.in/public/v2/users?access-token=f94827cc85f70eb72f3fe3813a224bde76f8e5c1b85c8004d3494e539f18d3dc");
+                // https://gorest.co.in/public/v2/users?access-token=xxx
+                xhttp.setRequestHeader(
+                    "Content-type",
+                    "application/x-www-form-urlencoded"
+                    )
+              
+                xhttp.send("name=Pankaj sharma&email=pankaj_sharma@gmail.com&gender=male&status=inactive");
+            }
+
+            //delete request to delete the user with userid
+            function deleteuser(){
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function(){
+                    document.getElementById('delete').innerHtml = 'User deleted';
+                    console.log('user deleted')
+                    console.log(this.responseText)
+                }
+                xhttp.open("DELETE","https://gorest.co.in/public/v2/users/3317?access-token=f94827cc85f70eb72f3fe3813a224bde76f8e5c1b85c8004d3494e539f18d3dc")
+                xhttp.send('User deleted');
+            }
+
+            //update request to update the user with userid
+            function updateuser(){
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function(){
+                    document.getElementById('update').innerHtml = this.responseText;
+                    console.log('user Updated')
+                }
+                xhttp.open("PATCH","https://gorest.co.in/public/v2/users/3392?access-token=f94827cc85f70eb72f3fe3813a224bde76f8e5c1b85c8004d3494e539f18d3dc")
+                
+                xhttp.send("name=Trisha Gill&email=trisha_gill@gmail.com&gender=male&status=inactive");
+            }
+
+          </script>
+        </body>
+</html>
